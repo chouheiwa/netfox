@@ -179,7 +179,10 @@ extension URLRequest
     
     func getNFXBody() -> Data
     {
-        return httpBodyStream?.readfully() ?? URLProtocol.property(forKey: "NFXBodyData", in: self) as? Data ?? Data()
+        return httpBodyStream?.readfully() ??
+            URLProtocol.property(forKey: "NFXBodyData", in: self) as? Data ??
+            httpBody ??
+            Data()
     }
     
     func getCurl() -> String {
